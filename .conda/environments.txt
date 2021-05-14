@@ -1,0 +1,1 @@
+/Users/yu/opt/anaconda3/envs/Pyxel

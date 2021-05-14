@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Y-Hiraoka-tech
+	email = 79314091+Y-Hiraoka-tech@users.noreply.github.com
+# Please adapt and uncomment the following lines:
+#	name = 平岡由宇
+#	email = yu@hiraokayuunoMacBook-Air.local
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
