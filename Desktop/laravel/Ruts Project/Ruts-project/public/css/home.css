@@ -3,3 +3,23 @@
     color: white;
     text-align: center;
 }
+.home-title{
+    background: #000;
+    color: white;
+    text-align: right;
+}
+.select-screen{
+    position: fixed;
+    bottom:0;
+    display:inline-block;
+}
+.under{
+    width: 100%;
+    height: 7vw;
+    background-color: bisque;
+    color: black;
+}
+.edit-profile{
+    display: inline-block; 
+}
+
