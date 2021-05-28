@@ -10,7 +10,8 @@
                 <tbody>
                     <tr>
                         <th>ID</th>
-                        <th>名前</th>
+                        <th>ユーザーID</th>
+                        <th>楽曲名</th>
                         <th>ジャケット写真</th>
                         <th>音源ファイル</th>
                         <th>トライアル音源ファイル</th>
@@ -22,6 +23,7 @@
                     @foreach ($posts as $post)
                     <tr>
                         <td>{{ $post->id }}</td>
+                        <td>{{ $post->user_id }}</td>
                         <td>{{ $post->name }}</td>
                         <td>{{ $post->music_image }}</td>
                         <td>{{ $post->music_file }}</td>

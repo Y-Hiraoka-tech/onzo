@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -43,8 +42,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
         return view('ruts.edit');
         })->name('edit');
 
-    Route::resource('posts', 'App\Http\Controllers\PostController', ['only' => ['index','show', 'create', 'store']]);
+    Route::resource('posts', 'App\Http\Controllers\PostController', ['only' => ['index','show', 'create', 'store',]]);
     Route::get('posts/edit/{id}', 'App\Http\Controllers\PostController@edit');
-    Route::post('posts/edit', 'App\Http\Controllers\PostController@update');
+    Route::post('posts/update', 'App\Http\Controllers\PostController@update')->name('post.update');
     Route::post('posts/delete/{id}', 'App\Http\Controllers\PostController@destroy');
 });

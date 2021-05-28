@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -40,20 +43,45 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $id = Auth::id();
+
+        $this->validate($request,Post::$rules);
+        $image_path = $request->file('music_image')->store('public/uploads/');
+        $file_path = $request->file('music_file')->store('public/uploads/');
+        $trial_path = $request->file('music_trial')->store('public/uploads/');
+        // if ($img = $request->music_image) {
+        //     $imgName= $img->getClientOriginalName();
+        //     $target_path = storage_path('uploads/');
+        //     $img->move($target_path,$imgName);
+        // }else {
+        //     $imgName = "";
+        // }
+
+        // if ($file = $request->music_file) {
+        //     $fileName= $file->getClientOriginalName();
+        //     $target_path = storage_path('uploads/');
+        //     $file->move($target_path,$fileName);
+        // }else {
+        //     $fileName = "";
+        // }
+        // if ($trial = $request->music_trial) {
+        //     $trialName= $trial->getClientOriginalName();
+        //     $target_path = storage_path('uploads/');
+        //     $trial->move($target_path,$trialName);
+        // }else {
+        //     $trialName = "";
+        // }
+
         //インスタンス作成
         $post = new Post();
         
         $post->name = $request->name;
-        $post->music_file = $request->music_file;
-        $post->music_trial = $request->music_trial;
-        $post->music_image = $request->music_image;
+        $post->music_image = basename($image_path);
+        $post->music_file = basename($file_path);
+        $post->music_trial = basename($trial_path);
         $post->music_lylic = $request->music_lylic;
         $post->music_ticket = $request->music_ticket;
-
         $post->user_id = $id;
-
         $post->save();
-        
         return redirect()->to('/posts');
     }
 
@@ -68,7 +96,6 @@ class PostController extends Controller
         $usr_id = $post->user_id;
         $user = DB::table('users')->where('id', $usr_id)->first();
         
-
         return view('posts.detail',['post' => $post,'user' => $user]);
     }
 
@@ -81,8 +108,8 @@ class PostController extends Controller
     public function edit($id)
     {
           // $usr_id = $post->user_id;
-          $post = \App\Models\Post::findOrFail($id);
-
+          $post = Post::find($id);
+          
           return view('posts.edit',['post' => $post]);
           // return view('posts.edit');
     }
@@ -94,23 +121,27 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request ,$id=1)
     {
-        $id = $request->post_id;
-        
-        //レコードを検索
-        $post = Post::findOrFail($id);
+
+
+        $post = Post::find($id);
+
+        //$this->validate($request,Post::$rules);
+        $image_path = $request->file('music_image')->store('public/uploads/');
+        $file_path = $request->file('music_file')->store('public/uploads/');
+        $trial_path = $request->file('music_trial')->store('public/uploads/');
+
         
         $post->name = $request->name;
-        $post->music_file = $request->music_file;
-        $post->music_trial = $request->music_trial;
-        $post->music_image = $request->music_image;
+        $post->music_image = basename($image_path);
+        $post->music_file = basename($file_path);
+        $post->music_trial = basename($trial_path);
         $post->music_lylic = $request->music_lylic;
         $post->music_ticket = $request->music_ticket;
-        
-        //保存（更新）
+
         $post->save();
-        
+    
         return redirect()->to('/posts');
     }
 
