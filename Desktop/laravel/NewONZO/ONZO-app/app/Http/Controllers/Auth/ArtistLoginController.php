@@ -20,7 +20,7 @@ class ArtistLoginController extends Controller
         if (Auth::guard('artist')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('posts/create');
+            return redirect()->intended('/profile/artist');
         }
 
         return back()->withErrors([

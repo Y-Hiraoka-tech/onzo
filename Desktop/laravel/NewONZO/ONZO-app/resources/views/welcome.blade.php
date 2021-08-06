@@ -14,6 +14,9 @@
     </head>
 
     <body style="background-color:#272525;color:white;">
+    <div style="text-align: right;">
+        <a href="{{ url('/register/artist') }}">アーティスト登録</a>
+    </div>
     <div style="text-align: center;margin-top:50%;">
         <h1 style="font-family: 'Turret Road', cursive;">GIFT MUSIC</h1>
     </div>

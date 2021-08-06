@@ -15,8 +15,8 @@
     <div class="body"> 
         <div class="row justify-content-center">
             <div class="col-8">
-                <h3 style="margin-bottom:20%;text-align: center;">アカウント情報を登録</h3>
-                <form method="POST" action="{{ route('register') }}">
+                <h3 style="margin-bottom:20%;text-align: center;">アーティストアカウント情報を登録</h3>
+                <form method="POST" action="/register/artist/store">
                         @csrf
 
                     <div class="form-group row">
@@ -70,7 +70,7 @@
                         <p style="text-align: center;font-family: 'Turret Road', cursive;font-size:30px;">or</p>
                 </form>
 
-                    <form action="{{ route('login') }}">
+                    <form action="{{ route('artist.login') }}">
                     <div class="form-group row">
                         <button class="mt-0" style="display:block;width:100%;height:60px;text-align:center;background-color:#F16D0E;">
                                     ログインする
@@ -80,7 +80,3 @@
                 </div>
 </div>
 @endsection
-
-
-
-

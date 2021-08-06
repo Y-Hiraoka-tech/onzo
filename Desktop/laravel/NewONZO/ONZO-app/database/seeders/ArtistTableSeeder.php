@@ -21,5 +21,17 @@ class ArtistTableSeeder extends Seeder
                 'password'=>Hash::make("password"),
                 'phone' =>"08000000000"
             ]);
+        DB::table('artists')->insert(
+            [   'name'=>"アーティストアカウント2",
+                'email'=>"artist2@artist2.com",
+                'password'=>Hash::make("password"),
+                'phone' =>"08000000002"
+            ]);
+        DB::table('artists')->insert(
+            [   'name'=>"アーティストアカウント3",
+                'email'=>"artist3@artist3.com",
+                'password'=>Hash::make("password"),
+                'phone' =>"08000000003"
+            ]);
     }
 }

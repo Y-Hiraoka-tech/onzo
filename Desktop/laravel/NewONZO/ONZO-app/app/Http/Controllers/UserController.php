@@ -18,10 +18,39 @@ class UserController extends Controller
     {
         $id = Auth::id();
         $users = DB::table('users')->where('id',$id)->get();
-        $posts = DB::table('posts')->where('user_id',$id)->get();
+        $posts = DB::table('posts')->where('artist_id',$id)->get();
         $posts->count = count($posts);
         return view('ruts.profile',['users' => $users,'posts'=> $posts,]);
     }
+
+    public function userprofile()
+    {
+        $id = Auth::id();
+        $users = DB::table('users')->where('id',$id)->get();
+        $posts = DB::table('posts')->where('artist_id',$id)->get();
+        $posts->count = count($posts);
+        return view('user.userprofile',['users' => $users,'posts'=> $posts,]);
+    }
+
+    public function requests()
+    {
+        $id = Auth::id();
+        $users = DB::table('users')->where('id',$id)->get();
+        $posts = DB::table('posts')->where('artist_id',$id)->get();
+        $posts->count = count($posts);
+        return view('user.requests',['users' => $users,'posts'=> $posts,]);
+    }
+
+    public function request()
+    {
+        $id = Auth::id();
+        $users = DB::table('users')->where('id',$id)->get();
+        $posts = DB::table('posts')->where('artist_id',$id)->get();
+        $posts->count = count($posts);
+        return view('user.request',['users' => $users,'posts'=> $posts,]);
+    }
+
+
 
     public function serch(Request $request) {
         $keyword_name = $request->name;

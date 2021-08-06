@@ -21,10 +21,10 @@ class CreateArtistsTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('user_image')->default('ONZOprofile.png');
+            $table->string('artist_image')->default('ONZOprofile.png');
             $table->string('phone');
-            $table->string('username')->default('ONZO.user{$id}');
-            $table->string('introduction')->default();
+            $table->string('artistname')->default(rand(000000,999999));
+            $table->string('introduction')->default('自己紹介がありません');
         });
     }
 

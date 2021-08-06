@@ -6,15 +6,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Turret+Road&display=swap" rel="stylesheet">
 
 <div class="container col-8 py-4">
-<form action="">
-
-</form>
-    <form action="{{ route('register.2') }}" method="post" enctype="multipart/form-data">
+    <form action="/register/artist/store/2" method="post" enctype="multipart/form-data">
         <div class="uploadimg" style="text-align: center;">
-                <input id="username" type="text" class="block mt-1 w-full form-control @error('name') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="ユーザーID" required autocomplete="username" autofocus>
+                <input id="artistname" type="text" class="block mt-1 w-full form-control @error('name') is-invalid @enderror" name="artistname" value="{{ old('artistname') }}" placeholder="ユーザーID" required autocomplete="artistname" autofocus>
             <label>
             <img id="preview" src="{{asset('storage/uploads/ONZOprofile.png')}}" style="max-width:200px;margin-bottom:5%;">
-            <input type="file" name="user_image" accept="image/png, image/jpeg" onchange="previewImage(this);" hidden/>
+            <input type="file" name="artist_image" accept="image/png, image/jpeg" onchange="previewImage(this);" hidden/>
             <p style="color:blue;">プロフィール写真を登録</p>
             </label>
             <input id="introduction" type="textarea" class="block mt-1 w-full form-control @error('name') is-invalid @enderror" name="introduction" value="{{ old('introduction') }}" placeholder="自己紹介" required autocomplete="introduction" autofocus>

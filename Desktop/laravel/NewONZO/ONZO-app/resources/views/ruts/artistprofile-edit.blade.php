@@ -2,12 +2,8 @@
 @section('content')
 
 <body style="background: #272525;color:white;">
-@foreach($users as $user)
-    <p style="margin-top: 5%;"><a href="{{ url('editaccount/'.$user->id) }}">プロフィール変更</a></p>
-@endforeach
     <p><a href="{{ url('register/artist') }}">アーティスト登録</a></p>
-    <p><a href="{{ url('profile/artist') }}">アーティストアカウントに変更</a></p>
-    <p><a href="{{ url('follow/requests') }}">フォローリクエスト一覧</a></p>
+    <p><a href="{{ url('/profile') }}">ユーザーアカウントに変更</a></p>
     <a href="{{ route('logout') }}"
         onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">

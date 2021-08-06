@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-
-class EditAccountController extends Controller
+class EditArtistAccountController extends Controller
 {
-    public function index(User $user)
+    public function index()
     {
         $id = Auth::id();
-        $users = DB::table('users')->where('id',$id)->get();
-        return view('ruts.profile-edit',['users' => $users]);
+        $artists = DB::table('artists')->where('id',$id)->get();
+        return view('ruts.artistprofile-edit',['artists' => $artists]);
     }
     public function edit($id)
     {

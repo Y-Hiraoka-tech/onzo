@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>PROFILE @yield('profile')</title>
+    <title>Artitst</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -27,7 +27,7 @@
         <nav class="navbar navtbar-expand-md navbar-ligh" style="justify-content: center;position: relative; border-bottom:solid 1px;">
                 <input type="button" onclick="history.back()" value="＜" style="background-color:black;color:white;position: absolute;left: 0;">
                 <div>
-                <p style="margin-bottom: 0;">My Music</p>
+                <p style="margin-bottom: 0;">Artist</p>
                 </div>
         </nav>
         <main>

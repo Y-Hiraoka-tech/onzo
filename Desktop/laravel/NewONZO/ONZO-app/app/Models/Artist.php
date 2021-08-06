@@ -12,8 +12,8 @@ class Artist extends Authenticatable
         'name',
         'email',
         'password',
-        'username',
-        'user_image',
+        'artistname',
+        'artist_image',
         'introduction',
         'phone',
     ];

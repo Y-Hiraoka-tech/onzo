@@ -19,8 +19,8 @@ class PostController extends Controller
      */
     public function index(){
         $id = Auth::id();
-        $posts = DB::table('posts')->where('user_id',$id)->get();
-        return view('posts.index', ['posts' => $posts]);
+        $posts = DB::table('posts')->where('artist_id',$id)->get();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -72,16 +72,16 @@ class PostController extends Controller
 
         //インスタンス作成
         $post = new Post();
-        
         $post->name = $request->name;
         $post->music_image = basename($image_path);
         $post->music_file = basename($file_path);
         $post->music_trial = basename($trial_path);
         $post->music_lylic = $request->music_lylic;
         $post->music_ticket = $request->music_ticket;
-        $post->user_id = $id;
+        $post->artist_id = $id;
         $post->save();
-        return redirect()->to('/posts');
+        
+        return redirect()->to('/profile');
     }
 
     /**
@@ -93,8 +93,9 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $id = Auth::id();
-        $users = DB::table('users')->where('id',$id)->get();   
-        return view('posts.detail',['post' => $post,'users' => $users]);
+        $artists = DB::table('artists')->where('id',$id)->get();
+        $posts = DB::table('posts')->where('id',$id)->get();
+        return view('posts.detail',compact('artists','posts'));
     }
 
     /**
@@ -105,11 +106,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-          // $usr_id = $post->user_id;
           $post = Post::find($id);
-          
-          return view('posts.edit',['post' => $post]);
-          // return view('posts.edit');
+          return view('posts.edit',compact('post'));
     }
 
     /**
@@ -119,18 +117,16 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request ,$id=1)
+    public function update(Request $request)
     {
-
-
-        $post = Post::find($id);
+        $id = Auth::id();
+        $post = DB::table('posts')->where('id',$id)->first();   
 
         //$this->validate($request,Post::$rules);
         $image_path = $request->file('music_image')->store('public/uploads/');
         $file_path = $request->file('music_file')->store('public/uploads/');
         $trial_path = $request->file('music_trial')->store('public/uploads/');
-
-        
+   
         $post->name = $request->name;
         $post->music_image = basename($image_path);
         $post->music_file = basename($file_path);
@@ -140,7 +136,7 @@ class PostController extends Controller
 
         $post->save();
     
-        return redirect()->to('/posts');
+        return redirect()->to('profile');
     }
 
     /**
@@ -151,10 +147,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = \App\Models\Post::find($id);
+        $post = Post::find($id);
         //削除
         $post->delete();
 
-        return redirect()->to('/posts');
+        return redirect()->to('profile');
     }
 }

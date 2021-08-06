@@ -5,7 +5,7 @@
 <script src="js/jquery-1.9.1.js" type="text/javascript"></script>
         <!-- メイン -->
         <body style="background: #272525;color:white;">
-            <form action="/posts" method="post" enctype="multipart/form-data" style="background: #272525;color:white;">
+            <form action="/posts/store" method="post" enctype="multipart/form-data" style="background: #272525;color:white;">
                 {{ csrf_field() }}
                 <div style="padding:7% 7%;border-bottom:solid 1px;">         
                     <p style="margin-bottom: 0;">

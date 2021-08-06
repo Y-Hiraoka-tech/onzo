@@ -25,10 +25,9 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light" style="display: flex;
-  justify-content: center; position: relative; background-color: black;color:white;">
+        <nav class="navbar navbar-expand-md navbar-light" style="border-bottom:solid 1px; display: flex;justify-content: center; position: relative; background-color: black;color:white;">
                 <p style="margin-bottom: 0;">HOME</p>
-                <p style=" position: absolute; right: 0;margin:auto 1%;"><a href="{{ url('/posts/create') }}"style="font-size:15px;color:white;text-decoration:underline">upload</a></p>
+                <p style=" position: absolute; right: 0;margin:auto 1%;"><a href="{{ route('post.create') }}"style="font-size:15px;color:white;text-decoration:underline">upload</a></p>
         </nav>
         <main>
             @yield('content')
