@@ -1,4 +1,4 @@
-@extends('layouts.request')
+@extends('layouts.userprofile')
 @section('content')
 @foreach($users as $user)
 <body style="background: #272525;color:white;">
@@ -21,16 +21,11 @@
             <td style="padding: 3px 6px; border: 0px none;">Following</td>
         </tr>
     </table> 
-    <form action="{{ route('followrequest.allow',$user->id) }}" style="text-align:center;">
-        <button type="submit" class="btn btn-primary"  style="text-align:center;background-color:#7B7575;">
-            フォロー承認する
-        </button>
-    </form>
-    <form action="{{ route('followrequest.block',$user->id) }}" style="text-align:center;">
-        <button type="submit" class="btn btn-primary"  style="text-align:center;background-color:#7B7575;">
-            ブロックする
-        </button>
-    </form>
+        <form action="" style="text-align:center;">
+            <button type="submit" class="btn btn-primary"  style="text-align:center;background-color:#7B7575;">
+                フォロー中
+            </button>
+        </form>
     
     <div class="introduction" style="width: 90%;margin:5% auto;text-align:center">
         <p>{{ $user->introduction}}</p>
@@ -49,5 +44,5 @@
             </div>
         </div> 
 </body>
-
+@extends('layouts.app_footer')
 @endsection

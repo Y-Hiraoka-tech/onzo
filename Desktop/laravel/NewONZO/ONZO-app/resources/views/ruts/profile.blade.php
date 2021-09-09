@@ -13,8 +13,8 @@
             {{ $posts->count }}
             </th>
             
-            <th style="padding: 3px; border: 0px none;">12</th>
-            <th style="padding: 3px; border: 0px none;">13</th>
+            <th style="padding: 3px; border: 0px none;">{{ $followers->count }}</th>
+            <th style="padding: 3px; border: 0px none;">{{ $userfollowings->count + $artistfollowings->count }}</th>
         <tr>
             <td style="padding: 3px 6px; border: 0px none;">Music</td>
             <td style="padding: 3px 6px; border: 0px none;">Followers</td>

@@ -16,7 +16,16 @@ class User extends Authenticatable
      *
      * @var array
      */
+    //scopeメソッドを使うとwhereが自分で作れる
+    public function followRequests(){
+        //自分に向けてフォロリクを送ってきている人がわかる
+        return $this->hasmany("App\Models\Following",'following_user_id', 'id')->isunapproval();
+    }
+    // public function followed(){
+    //     return $this->hasmany("App\Models\Following",'following_user_id', 'id')->where('user_id',Auth::id())->approval();
+    // }
     protected $fillable = [
+        
         'name',
         'email',
         'password',
@@ -24,6 +33,7 @@ class User extends Authenticatable
         'user_image',
         'introduction',
         'phone',
+        'tickets'
     ];
 
     /**

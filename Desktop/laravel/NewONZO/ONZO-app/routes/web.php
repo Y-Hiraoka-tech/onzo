@@ -44,7 +44,13 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 //search画面からの遷移
     Route::get('search','App\Http\Controllers\UserController@index')->name('search');
     Route::get('/searchresult','App\Http\Controllers\UserController@serch')->name('searchresult');
-    Route::get('/follow/user/{id}','App\Http\Controllers\UserController@userprofile')->name('follow.user');
+    Route::get('/follow/user/{id}','App\Http\Controllers\FollowController@userprofile')->name('follow.user');
+    Route::get('/follow/user/store/{id}','App\Http\Controllers\FollowController@following')->name('follow.user.store');
+    Route::get('/unfollow/user/store/{id}','App\Http\Controllers\FollowController@unfollow')->name('unfollow.user.store');
+    //userToArtist
+    Route::get('/follow/artist/{id}','App\Http\Controllers\FollowController@artistprofile')->name('follow.artist');
+    Route::get('/follow/artist/store/{id}','App\Http\Controllers\FollowController@artistFollowing')->name('follow.artist.store');
+    Route::get('/unfollow/artist/store/{id}','App\Http\Controllers\FollowController@artistUnfollow')->name('unfollow.artist.store');
 
 //Community画面からの遷移
     Route::get('community', function(){
@@ -58,13 +64,19 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::get('/setting','App\Http\Controllers\EditAccountController@index')->name('setting');
     Route::get('/setting/artist','App\Http\Controllers\EditArtistAccountController@index')->name('setting.artist');
 
-    Route::get('/follow/requests','App\Http\Controllers\UserController@requests')->name('follow.requests');
-    Route::get('/followrequest/user/{id}','App\Http\Controllers\UserController@request')->name('followrequest.user');
+    Route::get('/follow/requests','App\Http\Controllers\FollowController@requests')->name('follow.requests');
+    Route::get('/followrequest/user/{id}','App\Http\Controllers\FollowController@request')->name('followrequest.user');
+    Route::get('/followrequest/allow/{id}','App\Http\Controllers\FollowController@allow')->name('followrequest.allow');
+    Route::get('/followrequest/block/{id}','App\Http\Controllers\FollowController@block')->name('followrequest.block');
 
     Route::get('/editaccount/{id}','App\Http\Controllers\EditAccountController@edit')->name('account.edit');
     Route::post('/editaccount/update', 'App\Http\Controllers\EditAccountController@update')->name('account.update');
+    Route::get('/user/private/{id}','App\Http\Controllers\EditAccountController@private')->name('user.private');
+    Route::post('/user/private/update','App\Http\Controllers\EditAccountController@PrivateUpdatpe')->name('user.private.update');
 
     Route::get('/purchase/gift/','App\Http\Controllers\GiftController@purchase')->name('purchase.gift');
+    Route::get('/purchase/gift/store/','App\Http\Controllers\GiftController@store')->name('purchase.gift.store');
+    Route::post('/purchase/gift/store/','App\Http\Controllers\GiftController@store')->name('purchase.gift.store');
     
     Route::get('register/confirm', function(){
         return view('ruts.usercomfirm');
@@ -97,6 +109,8 @@ Route::group(['middleware' => ['artist']], function(){
     Route::get('posts/edit/{id}', 'App\Http\Controllers\PostController@edit');
     Route::post('posts/update', 'App\Http\Controllers\PostController@update')->name('post.update');
     Route::delete('posts/delete/{id}', 'App\Http\Controllers\PostController@destroy');
+
+    Route::get('/profile/artist', 'App\Http\Controllers\ArtistsController@profile')->name('profile.artist');
 });
 
 

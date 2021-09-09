@@ -29,11 +29,11 @@ class ArtistsController extends Controller
 
     public function profile()
     {
-        $id = Auth::id();
+        $id = Auth::guard('artist')->id();
         $artists = DB::table('artists')->where('id',$id)->get();
         $posts = DB::table('posts')->where('artist_id',$id)->get();
-        $posts->count = count($posts);
-        return view('ruts.artistprofile',['artists' => $artists,'posts'=> $posts,]);
+        $posts->count = $posts->count();
+        return view('ruts.artistprofile',compact('artists','posts'));
     }
 
 }

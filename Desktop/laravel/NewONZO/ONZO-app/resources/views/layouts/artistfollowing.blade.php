@@ -1,4 +1,4 @@
-@foreach($users as $user)
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>USER @yield('user')</title>
+    <title>Artist @yield('Artist')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -28,13 +28,12 @@
         <nav class="navbar navbar-expand-md navbar-light" style="background-color: black;color:white;">
                 <input type="button" onclick="history.back()" value="＜" style="background-color:black;color:white;">
                 <div style="margin: 0 auto;">
-                {{$user->username}}
+                {{$artists->name}}
                 </div>
         </nav>
         <main>
             @yield('content')
-        </main>
-        @endforeach
+        </main
     </div>
 </body>
 </html>

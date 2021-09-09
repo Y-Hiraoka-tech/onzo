@@ -2,55 +2,39 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Artist;
+use App\Models\UserToArtistsFollowing;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Following;
+
 
 class UserController extends Controller
 {
     public function index() {
         $users = User::all();
-        return view('ruts.search')->with('users', $users);
+        $artists = Artist::all();
+        return view('ruts.search',compact('users','artists'));
     }
 
+    //自分のprofile欄のやつ
     public function show()
     {
         $id = Auth::id();
         $users = DB::table('users')->where('id',$id)->get();
         $posts = DB::table('posts')->where('artist_id',$id)->get();
+        $userfollowings = DB::table('followings')->where('user_id',$id)->where('status',1)->get();
+        $artistfollowings = UserToArtistsFollowing::where('user_id',$id)->get();
+        $followers = DB::table('followings')->where('following_user_id',$id)->where('status',1)->get();
+        $userfollowings->count = count($userfollowings);
+        $artistfollowings->count = count($artistfollowings);
+        $followers->count = count($followers);
         $posts->count = count($posts);
-        return view('ruts.profile',['users' => $users,'posts'=> $posts,]);
+        return view('ruts.profile',compact('users','posts','userfollowings','artistfollowings','followers'));
     }
-
-    public function userprofile()
-    {
-        $id = Auth::id();
-        $users = DB::table('users')->where('id',$id)->get();
-        $posts = DB::table('posts')->where('artist_id',$id)->get();
-        $posts->count = count($posts);
-        return view('user.userprofile',['users' => $users,'posts'=> $posts,]);
-    }
-
-    public function requests()
-    {
-        $id = Auth::id();
-        $users = DB::table('users')->where('id',$id)->get();
-        $posts = DB::table('posts')->where('artist_id',$id)->get();
-        $posts->count = count($posts);
-        return view('user.requests',['users' => $users,'posts'=> $posts,]);
-    }
-
-    public function request()
-    {
-        $id = Auth::id();
-        $users = DB::table('users')->where('id',$id)->get();
-        $posts = DB::table('posts')->where('artist_id',$id)->get();
-        $posts->count = count($posts);
-        return view('user.request',['users' => $users,'posts'=> $posts,]);
-    }
-
-
 
     public function serch(Request $request) {
         $keyword_name = $request->name;

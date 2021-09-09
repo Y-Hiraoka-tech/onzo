@@ -16,8 +16,9 @@ class AddUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('user_image')->default('ONZOprofile.png');
             $table->string('phone');
-            $table->string('username')->default('ONZO.user{$id}');
+            $table->string('username')->default('ONZO.user'.rand(000000,999999));
             $table->string('introduction')->default();
+            $table->string('tickets')->default(0);
         });
     }
 

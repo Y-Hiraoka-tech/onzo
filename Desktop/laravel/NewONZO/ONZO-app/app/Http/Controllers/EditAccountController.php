@@ -44,4 +44,22 @@ class EditAccountController extends Controller
 
         return redirect()->to('/setting');
     }
+    public function private()
+    {
+        $id = Auth::id();
+        $user = User::find($id);
+        return view('ruts.private',['user' => $user]);
+    }
+    public function PrivateUpdate(Request $request)
+    {
+        $user = User::find(auth()->id());
+        if($user->private == 0){
+            $user->private = 1;
+        }
+        else{
+            $user->private = 0;
+        }
+        $user->save();
+        return $request->all();
+    }
 }

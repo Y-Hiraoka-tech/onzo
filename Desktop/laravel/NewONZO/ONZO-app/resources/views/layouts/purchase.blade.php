@@ -1,4 +1,3 @@
-@foreach($users as $user)
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -8,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>USER @yield('user')</title>
+    <title>PURCHASE @yield('purchase')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,18 +22,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body style="background: #272525;color:white;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light" style="background-color: black;color:white;">
-                <input type="button" onclick="history.back()" value="＜" style="background-color:black;color:white;">
-                <div style="margin: 0 auto;">
-                {{$user->username}}
+        <nav class="navbar navtbar-expand-md navbar-ligh" style="justify-content: center;position: relative; border-bottom:solid 1px;">
+                <input type="button" onclick="history.back()" value="＜" style="background-color:black;color:white;position: absolute;left: 0;">
+                <div>
+                <p style="margin-bottom: 0;">Purchase</p>
                 </div>
         </nav>
         <main>
             @yield('content')
         </main>
-        @endforeach
+    @extends('layouts.app_footer')
     </div>
 </body>
 </html>
